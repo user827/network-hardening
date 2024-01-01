@@ -1,0 +1,6 @@
+[Unit]
+After=nftables.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/network-hardening-check
