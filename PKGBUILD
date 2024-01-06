@@ -1,7 +1,7 @@
 # Maintainer: me
 
 pkgname=network-hardening
-pkgver=1.0.0
+pkgver=1.0.0.r5.gaa7480a
 pkgrel=1
 pkgdesc='Network hardening'
 arch=('any')
@@ -44,6 +44,9 @@ package() {
 
   mkdir -p "$pkgdir"/usr/bin
   install -m755 network-hardening-check.sh "$pkgdir"/usr/bin/network-hardening-check
+
+  mkdir -p "$pkgdir"/etc/nftables
+  install -m644 nftables.conf "$pkgdir"/etc/nftables/hardening.conf
 }
 
 # vim: filetype=PKGBUILD
