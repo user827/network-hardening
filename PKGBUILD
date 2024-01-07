@@ -1,12 +1,13 @@
 # Maintainer: me
 
 pkgname=network-hardening
-pkgver=1.0.0.r4.g34a9b53
+pkgver=1.0.0.r5.ga9ba2bb
 pkgrel=1
 pkgdesc='Network hardening'
 arch=('any')
 depends=(
     nftables
+    iptables-nft
 )
 makedepends=(
     git
