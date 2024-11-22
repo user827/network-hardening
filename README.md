@@ -2,6 +2,8 @@ Network hardening configs
 
 # Install
 
+Copy aur/PKGBUILD to repo root dir.
+
 ```
 makepkg --install --syncdeps
 ```
