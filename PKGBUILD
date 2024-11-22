@@ -43,8 +43,17 @@ package() {
   install -m644 network-hardening-check.service "$pkgdir"/usr/lib/systemd/system/
   ln -s /usr/lib/systemd/system/network-hardening-check.service "$pkgdir"/usr/lib/systemd/system/systemd-networkd.service.requires
 
+  mkdir -p "$pkgdir/usr/lib/$pkgname"
+  install -D -m755 lib/* "$pkgdir/usr/lib/$pkgname/"
+
   mkdir -p "$pkgdir"/usr/bin
-  install -m755 network-hardening-check.sh "$pkgdir"/usr/bin/network-hardening-check
+  install -D -m755 bin/* "$pkgdir"/usr/bin/
+
+  mkdir -p "$pkgdir"/usr/local/bin
+  install -D -m755 localbin/* "$pkgdir"/usr/local/bin/
+
+  mkdir -m 700 "$pkgdir"/etc/sudoers.d
+  install -m600 sudoers.d/* "$pkgdir"/etc/sudoers.d/
 
   mkdir -p "$pkgdir"/etc/nftables
   install -m644 nftables.conf "$pkgdir"/etc/nftables/hardening.conf

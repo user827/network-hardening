@@ -1,0 +1,29 @@
+#!/bin/bash
+set -eu
+
+# Allow internet access for a program. Changes back to the default net
+# namespace.
+
+if [[ ${1:-} != --force ]]; then
+  for d in /etc/netns/*; do
+    [[ -d $d ]] || continue
+    for f in "$d"/*; do
+      [[ -f $f ]] || continue
+      if /usr/bin/mountpoint -q "/etc/${f#"$d/"}"; then
+        # Because we are in mount namespace too and we don't know what the
+        # default mount namespace should be for our application
+        echo "Cannot change to default net namespace from an ip netns namespace"
+        exit 1
+      else
+        break
+      fi
+    done
+  done
+fi
+
+if [[ $EUID = 0 ]]; then
+  exec /usr/bin/nsenter -t 1 -n -- "$@"
+else
+  # need fullpath for sudo configs to apply
+  exec /usr/bin/sudo /usr/bin/nsenter -t 1 -n /usr/bin/setcuruser "$@"
+fi
