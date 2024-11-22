@@ -1,7 +1,7 @@
 # Maintainer: me
 
 pkgname=network-hardening
-pkgver=1.0.0.r6.gc9756ab
+pkgver=1.0.0.r9.g639c2c8
 pkgrel=1
 pkgdesc='Network hardening'
 arch=('any')
