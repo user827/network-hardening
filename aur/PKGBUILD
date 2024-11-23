@@ -49,9 +49,6 @@ package() {
   mkdir -p "$pkgdir"/usr/bin
   install -D -m755 bin/* "$pkgdir"/usr/bin/
 
-  mkdir -p "$pkgdir"/usr/local/bin
-  install -D -m755 localbin/* "$pkgdir"/usr/local/bin/
-
   mkdir -m 700 "$pkgdir"/etc/sudoers.d
   install -m600 sudoers.d/* "$pkgdir"/etc/sudoers.d/
 
